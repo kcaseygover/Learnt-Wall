@@ -43,6 +43,41 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Register user (part of nav header bar)
+app.post("/register", (req, res) => {
+  if (!req.body.email || !req.body.password) {
+    return res.status(400).send("The email or password field is empty. Please retry.");
+  }
+  else if (searchEmail(users, req.body.email)) {
+    res.status(400).send("That email is already registered.");
+  } else {
+  var randomID = generateRandomString();
+  users[randomID] = {id: randomID, email: req.body.email, password: req.body.password};
+  res.redirect(302, "/");
+  }
+  res.redirect("/");
+});
+
+// Login user (part of nav header bar)
+app.post("/login", (req, res) => {
+  res.redirect("/");
+});
+
+// Logout user
+app.post("/logout", (req, res) => {
+  res.redirect("/");
+});
+
+// Add new resource
+app.post("/user_id/resource", (req, res) => {
+  res.redirect("/");
+});
+
+// Show a user's resources
+app.get("/user_id/myresources", (req, res) => {
+  res.redirect("/");
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
