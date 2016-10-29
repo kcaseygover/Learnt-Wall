@@ -27,6 +27,7 @@ app.use(session({
 const usersRoutes = require("./routes/users");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
+const resourcesRoutes = require("./routes/resources");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -50,6 +51,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/register", registerRoutes(knex));
 app.use("/api/login", loginRoutes(knex));
+app.use("/api/resources", resourcesRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -57,28 +59,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-
   res.send(req.session.user_id)
 })
 
 
 // Logout user
 app.post("/logout", (req, res) => {
-
   delete req.session.user_id;
   res.redirect("/");
 });
 
-// Add new resource
-//app.post("/user_id/resource", (req, res) => {
-  //knex('resources').insert({url: }, {title: }, {description: });
- //res.redirect("/");
-//});
 
-// Show a user's resources
-app.get("/user_id/myresources", (req, res) => {
- res.redirect("/");
-});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

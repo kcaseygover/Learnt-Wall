@@ -20,8 +20,7 @@ module.exports = (knex) => {
     .where('email', req.body.email)
     .then(results => {
       let user = results[0];
-      console.log(results[0])
-      console.log("in post user ", user);
+
 
 
     if(user && bcrypt.compareSync(req.body.password, user.password)){
