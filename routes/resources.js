@@ -18,6 +18,7 @@ module.exports = (knex) => {
         description: req.body.description,
         category_id: req.body.category
       }
+      console.log(newResource);
       knex('resources').insert(newResource).then(results => {
         res.send(results);
       });
