@@ -68,11 +68,18 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/login", (req,res) => {
+app.get("/login", (req, res) => {
   res.render("login");
 });
 
-
+app.get("/categories", (req, res) => {
+  knex
+  .select('*')
+  .from('categories')
+  .then(results => {
+    res.json(results)
+  })
+})
 
 // Logout user
 app.post("/logout", (req, res) => {

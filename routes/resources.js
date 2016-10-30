@@ -41,7 +41,7 @@ module.exports = (knex) => {
       knex
       .select('*')
       .from('resources')
-      .where('category_id', '???')
+      .where('category_id', req.body.category_id)
       .then(results => {
         res.json(results)
       })
