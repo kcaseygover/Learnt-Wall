@@ -1,0 +1,52 @@
+.resource-feed article {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 5px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+article .resource-head {
+  background-color: #ededed;
+  width: 100%;
+  height: 70px;
+  line-height: 35px;
+}
+
+.resource-foot p {
+  font-size: 12px;
+  border-top: 1px solid #d3d3d3;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.resource-foot .icons {
+  height: 15px;
+  width: 15px;
+  display: none;
+}
+
+.resource-feed article:hover {
+  opacity: 1;
+}
+
+.resource-feed {
+  margin-top: 20px;
+  width: 100%;
+  background-color: white;
+  float: right;
+}
+
+.resource-feed p {
+  padding: 5px;
+}
+
+.resource-head h3 {
+  float: left;
+  padding: 5px;
+}
+
+#flash {
+  color: red;
+  padding-left: 5px;
+}
