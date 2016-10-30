@@ -5,15 +5,7 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  router.get('/:id', (req, res) => {
-    knex
-    .select('*')
-    .from('users')
-    .where('id', req.params.id)
-    .then(results => {
-      res.json(results[0])
-    })
-  });
+
   //like a resource
   router.post("/likes", (req, res) => {
 
@@ -25,15 +17,25 @@ module.exports = (knex) => {
   })
 
   //show a liked resource
-  router.get("/likes", (req, res) => {
+  router.get("/:id/likes", (req, res) => {
     knex
     .select("*")
     .from("likes")
-    .leftjoin('resources', 'likes.users_id', 'resources.users_id')
-    .where("likes.users_id", req.session.user_id)
+    .leftJoin('resources', 'likes.users_id', 'resources.users_id')
+    .where("likes.users_id", req.params.id)
     .then((results) => {
       res.json(results);
     });
+  });
+
+  router.get('/:id', (req, res) => {
+    knex
+    .select('*')
+    .from('users')
+    .where('id', req.params.id)
+    .then(results => {
+      res.json(results[0])
+    })
   });
 
   return router;

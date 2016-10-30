@@ -9,7 +9,7 @@ module.exports = (knex) => {
 
      //Add new resource
      router.post("/", (req, res) => {
-      console.log("req.body", req.body.url)
+
       let newResource = {
         id: uuid.v4(),
         users_id: req.session.user_id,
