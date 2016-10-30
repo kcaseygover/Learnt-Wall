@@ -31,12 +31,13 @@ module.exports = (knex) => {
         password: bcrypt.hashSync(req.body.password, 10)
       }
       knex('users').insert(newUser).then(results => {
-         res.send(results);
-      });
+       res.send(results);
+
+     });
 
     })
 
 
   });
-return router;
+  return router;
 }
