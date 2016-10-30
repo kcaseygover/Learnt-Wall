@@ -69,7 +69,7 @@ $(document).ready(function () {
         //load resources from db
         function loadResources() {
           $.ajax({
-            url: 'user.id/resources',
+            url: '/resources',
             method: 'GET',
             success: function (moreResources) {
               console.log('Success: ', moreResources);
@@ -90,7 +90,7 @@ $(document).ready(function () {
               $('#flash').append("Your new resource must have a URL, title AND description!")
             } else {
               $.ajax({
-                url:'/resources',
+                url:'/api/resources',
                 method: 'POST',
                 data: $postData,
                 success: function (result) {
@@ -99,6 +99,47 @@ $(document).ready(function () {
                 }
               }); } $('textarea').val('');
             });
+
+  //register functionality
+    $('#register-button').submit(function (ev) {
+            ev.preventDefault();
+            var $postData = $(this).serialize();
+            var $inputVal = $(this).find('input').val();
+            if ($inputVal === "") {
+              $('#flash').append("You must input an email and password.")
+            } else {
+              $.ajax({
+                url:'/api/register',
+                method: 'POST',
+                data: $postData,
+                success: function (result) {
+                  console.log('Success: ', result);
+                  window.location.href = "/";
+                }
+              }); }
+            });
+
+            //login functionality
+          $('#login-button').submit(function (ev) {
+            ev.preventDefault();
+            var $postData = $(this).serialize();
+            var $inputVal = $(this).find('input').val();
+            if ($inputVal === "") {
+              $('#flash').append("Enter your email and password.")
+            } else {
+              $.ajax({
+                url:'/api/login',
+                method: 'POST',
+                data: $postData,
+                success: function (result) {
+                  console.log('Success: ', result);
+                  Cookies.set('user_id', result.id);
+                  window.location.href = "/";
+                }
+              }); }
+            });
+
+
     $('.new-resource').hide();
         $('#add-button').click(function () {
       $('.new-resource').slideToggle( "fast", function () {
