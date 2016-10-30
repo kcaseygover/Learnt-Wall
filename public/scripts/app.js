@@ -65,6 +65,18 @@ $(document).ready(function () {
       return $resource;
     };
 
+    function createCategoryOptions(obj) {
+      var $select =
+      `<select class="form-control" id="exampleSelect1" name="category_id">
+      <option id="Javascript" value=${category_id}>${category_name}</option>
+      <option id="Databases" value=${category_id}>${category_name}</option>
+      <option id="HTML/CSS" value=${category_id}>${category_name}</option>
+      <option id="AJAX" value=${category_id}>${category_name}</option>
+      <option id="jQuery" value=${category_id}>${category_name}</option>
+      <option id="node" value=${category_id}>${category_name}</option>
+    </select>`
+      return $select;
+    }
 
         //load resources from db
         function loadResources() {
