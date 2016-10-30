@@ -63,6 +63,15 @@ app.get("/test", (req, res) => {
   res.send(req.session.user_id)
 })
 
+app.get("/register", (req, res) => {
+  console.log("register");
+  res.render("register");
+});
+
+app.get("/login", (req,res) => {
+  console.log("login");
+  res.render("login");
+});
 
 // Logout user
 app.post("/logout", (req, res) => {
