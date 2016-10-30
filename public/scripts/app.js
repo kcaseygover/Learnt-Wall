@@ -65,11 +65,23 @@ $(document).ready(function () {
       return $resource;
     };
 
+    function createCategoryOptions(obj) {
+      var $select =
+      `<select class="form-control" id="exampleSelect1" name="category_id">
+      <option id="Javascript" value=${category_id}>${category_name}</option>
+      <option id="Databases" value=${category_id}>${category_name}</option>
+      <option id="HTML/CSS" value=${category_id}>${category_name}</option>
+      <option id="AJAX" value=${category_id}>${category_name}</option>
+      <option id="jQuery" value=${category_id}>${category_name}</option>
+      <option id="node" value=${category_id}>${category_name}</option>
+    </select>`
+      return $select;
+    }
 
         //load resources from db
         function loadResources() {
           $.ajax({
-            url: '/resources',
+            url: 'api/resources',
             method: 'GET',
             success: function (moreResources) {
               console.log('Success: ', moreResources);
@@ -80,9 +92,24 @@ $(document).ready(function () {
 
         loadResources();
 
+
+/*        function isUserLogin() {
+          $.ajax ({
+            url: '/',
+            method: 'GET',
+            success: function (changeLogin) {
+              if (Cookies.get('user_id')) {
+                $('glyphicon-log-in').attr('glyphicon-log-out');
+              }
+            }
+          });
+        };
+
+        isUserLogin();*/
+
           //new resource form functionality with logic/error msgs for empty
           // also clears the textarea after successful submission
-  $('#add-new').submit(function (ev) {
+  $('#add-form').submit(function (ev) {
             ev.preventDefault();
             var $postData = $(this).serialize();
             var $textVal = $(this).find('textarea').val();
@@ -95,7 +122,7 @@ $(document).ready(function () {
                 data: $postData,
                 success: function (result) {
                   console.log('Success: ', result);
-                  loadResources()
+                  loadResources();
                 }
               }); } $('textarea').val('');
             });
@@ -133,11 +160,13 @@ $(document).ready(function () {
                 data: $postData,
                 success: function (result) {
                   console.log('Success: ', result);
-                  Cookies.set('user_id', result.id);
+                  //Cookies.set('user_id', result.id);
                   window.location.href = "/";
                 }
               }); }
             });
+
+
 
 
     $('.new-resource').hide();
