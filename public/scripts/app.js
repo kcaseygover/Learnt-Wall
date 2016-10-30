@@ -133,6 +133,7 @@ $(document).ready(function () {
                 data: $postData,
                 success: function (result) {
                   console.log('Success: ', result);
+                  Cookies.set('user_id', result.id);
                   window.location.href = "/";
                 }
               }); }
