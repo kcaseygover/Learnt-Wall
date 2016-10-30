@@ -71,6 +71,8 @@ app.get("/login", (req,res) => {
   res.render("login");
 });
 
+
+
 // Logout user
 app.post("/logout", (req, res) => {
   delete req.session.user_id;
