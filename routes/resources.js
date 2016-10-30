@@ -9,7 +9,7 @@ module.exports = (knex) => {
 
      //Add new resource
      router.post("/", (req, res) => {
-      console.log("req.body", req.body.url)
+
       let newResource = {
         id: uuid.v4(),
         users_id: req.session.user_id,
@@ -36,6 +36,16 @@ module.exports = (knex) => {
 
     });
 
+    // Search resources via category
+    router.get("/search", (req, res) => {
+      knex
+      .select('*')
+      .from('resources')
+      .where('category_id', req.body.category_id)
+      .then(results => {
+        res.json(results)
+      })
+    })
 
 
     return router;

@@ -23,15 +23,15 @@ module.exports = (knex) => {
 
 
 
-    if(user && bcrypt.compareSync(req.body.password, user.password)){
+      if(user && bcrypt.compareSync(req.body.password, user.password)){
 
         let user_id = user.id;
 
         req.session.user_id = user_id;
-        res.redirect('/');
+        res.json(user);
 
       } else {
-      res.status(401).send("The email or password is incorrect");
+        res.status(401).send("The email or password is incorrect");
       }
 
 

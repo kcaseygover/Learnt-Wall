@@ -19,15 +19,16 @@ const bcrypt = require('bcrypt');
 const uuid = require('node-uuid');
 
 app.use(session({
-    name: 'node_auth_app_cookie',
-    secret: 's$Uup3RSecre+M$22G'
-  }));
+  name: 'node_auth_app_cookie',
+  secret: 's$Uup3RSecre+M$22G'
+}));
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 const resourcesRoutes = require("./routes/resources");
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -67,11 +68,19 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/login", (req,res) => {
+app.get("/login", (req, res) => {
   res.render("login");
 });
 
-
+app.get("/categories", (req, res) => {
+  knex
+  .select('*')
+  .from('categories')
+  .then(results => {
+    res.json(results)
+  })
+})
+>>>>>>> origin/dev_karen
 
 // Logout user
 app.post("/logout", (req, res) => {
