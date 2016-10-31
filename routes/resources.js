@@ -46,6 +46,19 @@ module.exports = (knex) => {
       })
     });
 
+    router.get("/:id", (req, res) => {
+
+      knex
+      .select('*')
+      .from('resources')
+      .where('users_id', req.params.id)
+      .then(results => {
+        res.json(results)
+      })
+
+    });
+
+
     // Search resources via category
     router.get("/search", (req, res) => {
       knex
