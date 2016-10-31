@@ -80,7 +80,7 @@ app.get("/categories", (req, res) => {
     res.json(results)
   })
 })
->>>>>>> origin/dev_karen
+
 
 // Logout user
 app.post("/logout", (req, res) => {

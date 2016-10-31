@@ -31,11 +31,11 @@ $(document).ready(function () {
       title: 'Volta Labs',
       description: 'coworking space info',
       category: 'coworking'}}
-    ];*/
+      ];*/
 
       //functions to create the resource template then move the db info into it
-    function renderResources(resourcesList) {
-      $('.resource-feed').empty();
+      function renderResources(resourcesList) {
+        $('.resource-feed').empty();
 
        // var sortResources = resourcesList.sort(function (a, b) {
         //  return a.created_at < b.created_at;
@@ -47,41 +47,41 @@ $(document).ready(function () {
 
       //renderResources(resources);
 
-    function createResourceElement(obj) {
-      var $resource =
-      `<article>
-      <header class="resource-head">
-      <a href="${obj.user.url}"><h3>${obj.user.title}</h3></a>
-      <main>
-      <p>${obj.user.description}</p>
-      </main>
-      <footer class="resource-foot">
-      <p>${obj.user.category}</p>
-      <img class="icons" src="/images/reply-action.png">
-      <img class="icons" src="/images/retweet-action.png">
-      <img class="icons" src="/images/like-action.png">
-      </footer>
-      </article>`
-      return $resource;
-    };
+      function createResourceElement(obj) {
+        var $resource =
+        `<article>
+        <header class="resource-head">
+        <a href="${obj.user.url}"><h3>${obj.user.title}</h3></a>
+        <main>
+        <p>${obj.user.description}</p>
+        </main>
+        <footer class="resource-foot">
+        <p>${obj.user.category}</p>
+        <img class="icons" src="/images/reply-action.png">
+        <img class="icons" src="/images/retweet-action.png">
+        <img class="icons" src="/images/like-action.png">
+        </footer>
+        </article>`
+        return $resource;
+      };
 
-    function createCategoryOptions(obj) {
-      var $select =
-      `<select class="form-control" id="exampleSelect1" name="category_id">
-      <option id="Javascript" value=${category_id}>${category_name}</option>
-      <option id="Databases" value=${category_id}>${category_name}</option>
-      <option id="HTML/CSS" value=${category_id}>${category_name}</option>
-      <option id="AJAX" value=${category_id}>${category_name}</option>
-      <option id="jQuery" value=${category_id}>${category_name}</option>
-      <option id="node" value=${category_id}>${category_name}</option>
-    </select>`
-      return $select;
-    }
+      function createCategoryOptions(obj) {
+        var $select =
+        `<select class="form-control" id="exampleSelect1" name="category_id">
+        <option id="Javascript" value=${category_id}>${category_name}</option>
+        <option id="Databases" value=${category_id}>${category_name}</option>
+        <option id="HTML/CSS" value=${category_id}>${category_name}</option>
+        <option id="AJAX" value=${category_id}>${category_name}</option>
+        <option id="jQuery" value=${category_id}>${category_name}</option>
+        <option id="node" value=${category_id}>${category_name}</option>
+        </select>`
+        return $select;
+      }
 
         //load resources from db
         function loadResources() {
           $.ajax({
-            url: 'api/resources',
+            url: '/api/resources',
             method: 'GET',
             success: function (moreResources) {
               console.log('Success: ', moreResources);
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
           //new resource form functionality with logic/error msgs for empty
           // also clears the textarea after successful submission
-  $('#add-form').submit(function (ev) {
+          $('#add-form').submit(function (ev) {
             ev.preventDefault();
             var $postData = $(this).serialize();
             var $textVal = $(this).find('textarea').val();
@@ -128,51 +128,51 @@ $(document).ready(function () {
             });
 
   //register functionality
-    $('#register-button').submit(function (ev) {
-            ev.preventDefault();
-            var $postData = $(this).serialize();
-            var $inputVal = $(this).find('input').val();
-            if ($inputVal === "") {
-              $('#flash').append("You must input an email and password.")
-            } else {
-              $.ajax({
-                url:'/api/register',
-                method: 'POST',
-                data: $postData,
-                success: function (result) {
-                  console.log('Success: ', result);
-                  window.location.href = "/";
-                }
-              }); }
-            });
+  $('#register-button').submit(function (ev) {
+    ev.preventDefault();
+    var $postData = $(this).serialize();
+    var $inputVal = $(this).find('input').val();
+    if ($inputVal === "") {
+      $('#flash').append("You must input an email and password.")
+    } else {
+      $.ajax({
+        url:'/api/register',
+        method: 'POST',
+        data: $postData,
+        success: function (result) {
+          console.log('Success: ', result);
+          window.location.href = "/";
+        }
+      }); }
+    });
 
             //login functionality
-          $('#login-button').submit(function (ev) {
-            ev.preventDefault();
-            var $postData = $(this).serialize();
-            var $inputVal = $(this).find('input').val();
-            if ($inputVal === "") {
-              $('#flash').append("Enter your email and password.")
-            } else {
-              $.ajax({
-                url:'/api/login',
-                method: 'POST',
-                data: $postData,
-                success: function (result) {
-                  console.log('Success: ', result);
+            $('#login-button').submit(function (ev) {
+              ev.preventDefault();
+              var $postData = $(this).serialize();
+              var $inputVal = $(this).find('input').val();
+              if ($inputVal === "") {
+                $('#flash').append("Enter your email and password.")
+              } else {
+                $.ajax({
+                  url:'/api/login',
+                  method: 'POST',
+                  data: $postData,
+                  success: function (result) {
+                    console.log('Success: ', result);
                   //Cookies.set('user_id', result.id);
                   window.location.href = "/";
                 }
               }); }
+              });
+
+
+
+
+            $('.new-resource').hide();
+            $('#add-button').click(function () {
+              $('.new-resource').slideToggle( "fast", function () {
+                $('.exampleInputEmail1').focus();
+              });
             });
-
-
-
-
-    $('.new-resource').hide();
-        $('#add-button').click(function () {
-      $('.new-resource').slideToggle( "fast", function () {
-        $('.exampleInputEmail1').focus();
-      });
-    });
-});
+          });

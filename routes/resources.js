@@ -16,11 +16,11 @@ module.exports = (knex) => {
         url: req.body.url,
         title: req.body.title,
         description: req.body.description,
-        category_id: req.body.category
+        category_id: req.body.category_id//this is undefined
       }
       console.log(newResource);
       knex('resources').insert(newResource).then(results => {
-        res.send(results);
+        res.json(results);
       });
     });
 
