@@ -71,7 +71,7 @@
    <form id="add-form">
   <div class="form-group">
     <label for="url" class="label">URL</label>
-    <input type="url" class="form-control" id="exampleInputEmail1" name="url" aria-describedby="emailHelp" placeholder="Enter your resource's URL">
+    <textarea class="form-control" id="exampleInputEmail1" name="url" aria-describedby="emailHelp" placeholder="Enter your resource's URL"></textarea>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1" class="label">Title</label>
@@ -82,7 +82,7 @@
     <textarea class="form-control" id="exampleTextarea" rows="3" name="description"></textarea>
   </div>
   <div class="form-group">
-    <label for="exampleSelect1" class="label">Select a topic category</label>
+    <label for="exampleSelect1" class="label" id="select">Select a topic category</label>
     <select class="form-control" id="exampleSelect1" name="category_id">
       <option id="Javascript" value=>Javascript</option>
       <option id="Databases">Databases</option>
@@ -117,14 +117,14 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Find things fast</h2>
+          <p>Add your web dev resources here to keep them all in one spot</p>
+          <p><a class="btn btn-default" href="/register" role="button">Register &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Already have an account?</h2>
+          <p>Log in to add and search resources</p>
+          <p><a class="btn btn-default" href="/login" role="button">Log in &raquo;</a></p>
        </div>
         <div class="col-md-4">
           <h2>Heading</h2>

@@ -1,10 +1,10 @@
 /*$(() => {
   $.ajax({
     method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
+    url: "/api/resources"
+  }).done((resources) => {
+    for(resource of resources) {
+      $("<div>").text(resources.title, resources.description, resources.url).appendTo($("body"));
     }
   });;
 });*/
@@ -51,21 +51,18 @@ $(document).ready(function () {
       var $resource =
       `<article>
       <header class="resource-head">
-      <a href="${obj.user.url}"><h3>${obj.user.title}</h3></a>
+      <a href="${resURL}"><h3>${resTitle}</h3></a>
       <main>
-      <p>${obj.user.description}</p>
+      <p>${resDesc}</p>
       </main>
       <footer class="resource-foot">
-      <p>${obj.user.category}</p>
-      <img class="icons" src="/images/reply-action.png">
-      <img class="icons" src="/images/retweet-action.png">
-      <img class="icons" src="/images/like-action.png">
+      <p>${resCat}</p>
       </footer>
       </article>`
       return $resource;
     };
 
-    function createCategoryOptions(obj) {
+/*    function createCategoryOptions(obj) {
       var $select =
       `<select class="form-control" id="exampleSelect1" name="category_id">
       <option id="Javascript" value=${category_id}>${category_name}</option>
@@ -76,12 +73,12 @@ $(document).ready(function () {
       <option id="node" value=${category_id}>${category_name}</option>
     </select>`
       return $select;
-    }
+    }*/
 
         //load resources from db
         function loadResources() {
           $.ajax({
-            url: 'api/resources',
+            url: '/api/resources',
             method: 'GET',
             success: function (moreResources) {
               console.log('Success: ', moreResources);
@@ -90,7 +87,7 @@ $(document).ready(function () {
           });
         };
 
-        loadResources();
+       loadResources();
 
 
 /*        function isUserLogin() {
@@ -110,7 +107,7 @@ $(document).ready(function () {
           //new resource form functionality with logic/error msgs for empty
           // also clears the textarea after successful submission
   $('#add-form').submit(function (ev) {
-            ev.preventDefault();
+            //ev.preventDefault();
             var $postData = $(this).serialize();
             var $textVal = $(this).find('textarea').val();
             if ($textVal === "") {
