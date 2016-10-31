@@ -48,19 +48,26 @@ $(document).ready(function () {
       //renderResources(resources);
 
     function createResourceElement(obj) {
+      console.log(obj);
       var $resource =
       `<article>
       <header class="resource-head">
-      <a href="${resURL}"><h3>${resTitle}</h3></a>
+      <a href="//${obj.url}" target="_blank"><h3>${obj.title}</h3></a>
+      </header>
       <main>
-      <p>${resDesc}</p>
+      <p>${obj.description}</p>
       </main>
-      <footer class="resource-foot">
-      <p>${resCat}</p>
+       <footer class="resource-foot">
+       <p> Resources </p>
       </footer>
       </article>`
       return $resource;
     };
+
+
+/*         <footer class="resource-foot">
+
+      </footer><p>${obj.category_id}</p> -- add this back in when we figure out categories */
 
 /*    function createCategoryOptions(obj) {
       var $select =
@@ -77,6 +84,7 @@ $(document).ready(function () {
 
         //load resources from db
         function loadResources() {
+          console.log("load resources");
           $.ajax({
             url: '/api/resources',
             method: 'GET',
@@ -108,11 +116,12 @@ $(document).ready(function () {
           // also clears the textarea after successful submission
   $('#add-form').submit(function (ev) {
             //ev.preventDefault();
+            console.log("***is it submitting");
             var $postData = $(this).serialize();
             var $textVal = $(this).find('textarea').val();
             if ($textVal === "") {
               $('#flash').append("Your new resource must have a URL, title AND description!")
-            } else {
+            } else { console.log("***about to post");
               $.ajax({
                 url:'/api/resources',
                 method: 'POST',
